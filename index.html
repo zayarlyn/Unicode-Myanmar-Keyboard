@@ -9,8 +9,10 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-   <h1>Unicode - Zawgyi Online Keyboard</h1>
-   <input type="text" id="input-box">
+   <div id="input-field">
+      <h1>Unicode - Zawgyi Online Keyboard</h1>
+      <textarea id="input-box" col="31" rows="3"></textarea>
+   </div>
 
    <div class="keyboard-ctr">
       <div class="keyboard-keys">
@@ -24,7 +26,7 @@
          <button class="key">7</button>
          <button class="key">8</button>
          <button class="key">9</button>
-         <i></i>
+         ''
          <button class="key">q</button>
          <button class="key">w</button>
          <button class="key">e</button>
@@ -48,7 +50,7 @@
          <button class="key">k</button>
          <button class="key">l</button>
          <button class="key"><i class="fas fa-level-down-alt" style="transform: rotate(90deg);"></i></button>
-         <i></i>
+         ''
          <button class="key">z</button>
          <button class="key">x</button>
          <button class="key">c</button>
@@ -62,5 +64,7 @@
          <button class="key key-common">space</button>
       </div>
    </div>
+
+   <script src="app.js"></script>
 </body>
 </html>

@@ -5,6 +5,28 @@
    font-family: 'open sans';
 }
 
+#input-field {
+   text-align: center;
+}
+
+#input-field h1 {
+   font-size: 2.5rem;
+   margin: 1rem 0;
+   background-image: linear-gradient(90deg, red, blue);
+   background-clip: text;
+   color: transparent;
+}
+
+#input-box {
+   width: 85%;
+   max-width: 700px;
+   margin: 0 auto;
+   padding-left: 5px;
+   box-sizing: border-box;
+   /* height: 10ch; */
+   /* display: block; */
+}
+
 .keyboard-ctr {
    position: fixed;
    bottom: 0;
@@ -13,6 +35,8 @@
 }
 
 .keyboard-keys {
+   max-width: 1100px;
+   margin: 0 auto;
    display: grid;
    grid-template-columns: repeat(11, 8.18%);
    grid-auto-rows: 3rem;
@@ -26,7 +50,7 @@
 .key {
    background-color: #333;
    color: #fff;
-   border: 0;
+   border: none;
    border-radius: 5px;
    width: 100%;
    height: 2.5rem;
