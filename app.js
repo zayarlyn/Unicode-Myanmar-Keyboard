@@ -15,6 +15,9 @@ function init() {
    let keyboardKeys = document.createElement("div");
    keyboardKeys.classList.add("keyboard-keys");
 
+   inputBox.value = '';
+   inputBox.focus();
+   
    let keys = keyboard.key_layout.eng_layout;
    keys.forEach( key => {
       const button = document.createElement('button');
@@ -24,23 +27,44 @@ function init() {
       switch(key) {
          case "backspace":
             button.innerHTML = createCustomKey('backspace');
+            button.addEventListener('click', () => {
+               keyboard.value = keyboard.value.slice(0, -1);
+               inputBox.value = keyboard.value;
+               inputBox.focus();
+            });
             break;
          case "cap":
             button.innerHTML = createCustomKey('arrow-alt-circle-up');
+            button.addEventListener('click', () => {
+               button.classList.toggle('cap-on');
+               keyboard.cap_lock = keyboard.cap_lock? null : true;
+               inputBox.focus();
+            });
             break;
          case "enter":
             button.innerHTML = createCustomKey('level-down-alt');
             button.firstElementChild.style.transform = "rotate(90deg)"
+            button.addEventListener('click', () => {
+               keyboard.value += '\n';
+               inputBox.value = keyboard.value;
+               inputBox.focus();
+            })
             break;
          case "space":
             button.innerHTML = createCustomKey('ruler-horizontal');
-            button.classList.add('key-common')
+            button.classList.add('key-common');
+            button.addEventListener('click', () => {
+               keyboard.value += ' ';
+               inputBox.value = keyboard.value;
+               inputBox.focus();
+            });
             break;
          default:
             button.innerHTML = key;
             button.addEventListener('click', () => {
-               keyboard.value += key;
+               keyboard.value += keyboard.cap_lock ?  key.toUpperCase() : key;
                inputBox.value = keyboard.value;
+               inputBox.focus();
             });
       }
       keyboardKeys.appendChild(button);
@@ -50,12 +74,13 @@ function init() {
 }
 
 function createCustomKey(iconName) {
-   return `<i class="fas fa-${iconName}"></i>`
+   return `<i class="fas fa-${iconName}"></i>`;
 }
 
 function createKey() {
 
 }
 
-init();
-
+document.addEventListener('DOMContentLoaded', () => {
+   init();
+})

@@ -19,12 +19,11 @@
 
 #input-box {
    width: 85%;
+   min-height: 6rem;
    max-width: 700px;
    margin: 0 auto;
    padding-left: 5px;
    box-sizing: border-box;
-   /* height: 10ch; */
-   /* display: block; */
 }
 
 .keyboard-ctr {
@@ -59,6 +58,10 @@
 
 .key-common {
    grid-area: 5/4/6/9;
+}
+
+.cap-on {
+   color: #0f0;
 }
 
 .key:hover {
