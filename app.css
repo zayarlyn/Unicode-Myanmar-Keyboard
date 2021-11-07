@@ -16,6 +16,7 @@
    margin: 1rem 0;
    background-image: linear-gradient(90deg, red, blue);
    background-clip: text;
+   -webkit-background-clip: text;
    color: transparent;
 }
 
