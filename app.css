@@ -60,3 +60,11 @@
 .key-common {
    grid-area: 5/4/6/9;
 }
+
+.key:hover {
+   cursor: pointer;
+}
+
+.key:active {
+   background-color: #222;
+}
