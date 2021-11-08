@@ -1,6 +1,6 @@
 const keyboard = {
    key_layout : {
-      eng_layout : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "","q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "backspace","cap", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter","", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?","space"]
+      eng_layout : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "","q", ["q", 'ဈ', 'ဆ'], ["w", 'ဝ', 'တ'], ["e", 'ဣ', 'န'], ["r", '၎င်း', 'မ'], ["t", 'ဤ','အ'], ["y", '၌', 'ပ'], ["u", 'ဥ', 'က'], ["i", '၍', 'င'], "o", "p", "backspace","cap", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter","", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?","space"]
    },
 
    keyboard_binding: false,
@@ -24,56 +24,63 @@ function init() {
    }
    
    let keys = keyboard.key_layout.eng_layout;
-   keys.forEach( key => {
-      const button = document.createElement('button');
-      button.setAttribute('type', 'button');
-      button.classList.add('key');
+   // keys.forEach( key => {
+   //    const button = document.createElement('button');
+   //    button.setAttribute('type', 'button');
+   //    button.classList.add('key');
 
-      switch(key) {
-         case "backspace":
-            button.innerHTML = createCustomKey('backspace');
-            button.addEventListener('click', () => {
-               keyboard.value = keyboard.value.slice(0, -1);
-               inputBox.value = keyboard.value;
-               inputBox.focus();
-            });
-            break;
-         case "cap":
-            button.innerHTML = createCustomKey('arrow-alt-circle-up');
-            button.addEventListener('click', () => {
-               button.classList.toggle('cap-on');
-               keyboard.cap_lock = keyboard.cap_lock? null : true;
-               inputBox.focus();
-            });
-            break;
-         case "enter":
-            button.innerHTML = createCustomKey('level-down-alt');
-            button.firstElementChild.style.transform = "rotate(90deg)"
-            button.addEventListener('click', () => {
-               keyboard.value += '\n';
-               inputBox.value = keyboard.value;
-               inputBox.focus();
-            })
-            break;
-         case "space":
-            button.innerHTML = createCustomKey('ruler-horizontal');
-            button.classList.add('key-common');
-            button.addEventListener('click', () => {
-               keyboard.value += ' ';
-               inputBox.value = keyboard.value;
-               inputBox.focus();
-            });
-            break;
-         default:
-            button.innerHTML = key;
-            button.addEventListener('click', () => {
-               keyboard.value += keyboard.cap_lock ?  key.toUpperCase() : key;
-               inputBox.value = keyboard.value;
-               inputBox.focus();
-            });
-      }
-      keyboardKeys.appendChild(button);
-   });
+   //    switch(key) {
+   //       case "backspace":
+   //          button.innerHTML = createCustomKey('backspace');
+   //          button.addEventListener('click', () => {
+   //             keyboard.value = keyboard.value.slice(0, -1);
+   //             inputBox.value = keyboard.value;
+   //             inputBox.focus();
+   //          });
+   //          break;
+   //       case "cap":
+   //          button.innerHTML = createCustomKey('arrow-alt-circle-up');
+   //          button.addEventListener('click', () => {
+   //             button.classList.toggle('cap-on');
+   //             keyboard.cap_lock = keyboard.cap_lock? null : true;
+   //             inputBox.focus();
+   //          });
+   //          break;
+   //       case "enter":
+   //          button.innerHTML = createCustomKey('level-down-alt');
+   //          button.firstElementChild.style.transform = "rotate(90deg)"
+   //          button.addEventListener('click', () => {
+   //             keyboard.value += '\n';
+   //             inputBox.value = keyboard.value;
+   //             inputBox.focus();
+   //          })
+   //          break;
+   //       case "space":
+   //          button.innerHTML = createCustomKey('ruler-horizontal');
+   //          button.classList.add('key-common');
+   //          button.addEventListener('click', () => {
+   //             keyboard.value += ' ';
+   //             inputBox.value = keyboard.value;
+   //             inputBox.focus();
+   //          });
+   //          break;
+   //       default:
+   //          button.innerHTML = key;
+   //          button.addEventListener('click', () => {
+   //             keyboard.value += keyboard.cap_lock ?  key.toUpperCase() : key;
+   //             inputBox.value = keyboard.value;
+   //             inputBox.focus();
+   //          });
+   //    }
+   //    keyboardKeys.appendChild(button);
+   // });
+   const btn = document.createElement('button');
+   btn.setAttribute('type', 'button');
+   btn.classList.add('key', 'test');
+   btn.innerHTML = '<span>u</span><span style="font-size: 10px; top: 5px">၎င်း</span><span>က</span>';
+
+   keyboardKeys.appendChild(btn);
+   
    keyboardCtr.appendChild(keyboardKeys);
    body.appendChild(keyboardCtr);
 }
@@ -88,4 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.onkeydown = function(e) {
    console.log(e.key);
-}
+};
