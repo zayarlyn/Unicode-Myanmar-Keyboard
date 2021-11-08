@@ -7,6 +7,7 @@ const keyboard = {
    value : ""
 }
 
+
 function init() {
    const body = document.body;
    const inputBox = document.getElementById('input-box');
