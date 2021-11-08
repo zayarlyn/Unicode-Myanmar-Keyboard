@@ -18,6 +18,9 @@ function init() {
 
    inputBox.value = '';
    inputBox.focus();
+   inputBox.value.onchange = function () {
+      console.log(this.selectionStart);
+   }
    
    let keys = keyboard.key_layout.eng_layout;
    keys.forEach( key => {

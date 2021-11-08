@@ -24,9 +24,9 @@
    width: 100%;
    min-height: 6rem;
    max-width: 700px;
-   /* margin: 0 auto; */
    padding-left: 5px;
    box-sizing: border-box;
+   pointer-events: none;
 }
 
 .keyboard-ctr {
@@ -84,5 +84,11 @@
 
    #input-field h1 {
       font-size: 1.8rem;
+   }
+}
+
+@media (min-width: 1200px) {
+   #input-box {
+      font-size: 2rem;
    }
 }
