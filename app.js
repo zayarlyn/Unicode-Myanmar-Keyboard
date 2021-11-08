@@ -3,6 +3,7 @@ const keyboard = {
       eng_layout : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "","q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "backspace","cap", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter","", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?","space"]
    },
 
+   keyboard_binding: false,
    cap_lock : null,
    value : ""
 }
@@ -81,10 +82,10 @@ function createCustomKey(iconName) {
    return `<i class="fas fa-${iconName}"></i>`;
 }
 
-function createKey() {
-
-}
-
 document.addEventListener('DOMContentLoaded', () => {
    init();
 })
+
+document.onkeydown = function(e) {
+   console.log(e.key);
+}
