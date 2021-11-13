@@ -1,11 +1,11 @@
 const keyboard = {
    key_layout : {
-      eng_layout : [ ["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"], ["0"], [""], ["q", 'ဈ', 'ဆ'], ["w", 'ဝ', 'တ'], ["e", 'ဣ', 'န'], ["r", '၎င်း', 'မ'], ["t", 'ဤ','အ'], ["y", '၌', 'ပ'], ["u", 'ဥ', 'က'], ["i", '၍', 'င'], ["o", 'ဿ','သ'], ["p", 'ဏ','စ'] ,["backspace"],["cap"], ["a", 'ဗ', 'ေ'], ["s",'ှ','ျ'], ["d",'ီ', 'ိ'], ["f","", '်'], ["g", 'ါ', 'ွ'], ["h", 'ံ', '့'], ["j", 'ဲ', 'ြ'], ["k", 'ဒ', "ု"], ["l", 'ဓ', 'ူ'], ["enter"], [""], ["z", 'ဇ', 'ဖ'], ["x", 'ဌ', 'ထ'], ["c", 'ဃ', 'ခ'], ["v", 'ဠ', 'လ'], ["b", 'ယ', 'ဘ'], ["n", 'ဉ', 'ည'], ["m", 'ဦ',  'ာ'], [",", '၊', '။'], [".", "ရ", "္"], ["?"], [""], ["+",'ဧ','ဟ'], ["+", 'ဂ', 'း'], ["space"], ["+","ႅ", '၏'], ["+",'ဪ',"ဩ"]]
+      eng_layout : [ ["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"], ["0"], [""], ["q", 'ဈ', 'ဆ'], ["w", 'ဝ', 'တ'], ["e", 'ဣ', 'န'], ["r", '၎င်း', 'မ'], ["t", 'ဤ','အ'], ["y", '၌', 'ပ'], ["u", 'ဥ', 'က'], ["i", '၍', 'င'], ["o", 'ဿ','သ'], ["p", 'ဏ','စ'] ,["backspace"],["capslock"], ["a", 'ဗ', 'ေ'], ["s",'ှ','ျ'], ["d",'ီ', 'ိ'], ["f","", '်'], ["g", 'ါ', 'ွ'], ["h", 'ံ', '့'], ["j", 'ဲ', 'ြ'], ["k", 'ဒ', "ု"], ["l", 'ဓ', 'ူ'], ["enter"], ["shift"], ["z", 'ဇ', 'ဖ'], ["x", 'ဌ', 'ထ'], ["c", 'ဃ', 'ခ'], ["v", 'ဠ', 'လ'], ["b", 'ယ', 'ဘ'], ["n", 'ဉ', 'ည'], ["m", 'ဦ',  'ာ'], [",", '၊', '။'], [".", "ရ", "္"], ["?"], [""], ["[",'ဧ','ဟ'], [";", 'ဂ', 'း'], ["space"], ["\\","ႅ", '၏'], ["]",'ဪ',"ဩ"]]
    },
 
    keyboard_binding: false,
    cap_lock : null,
-   mm_f : true,
+   shift_key : false,
    value : ""
 }
 
@@ -17,7 +17,6 @@ function init() {
    keyboardKeys.classList.add("keyboard-keys");
 
    inputBox.value = '';
-   inputBox.focus();
    
    let keys = keyboard.key_layout.eng_layout;
    keys.forEach( key=> {
@@ -30,57 +29,65 @@ function init() {
             case "backspace":
                button.innerHTML = createCustomKey('backspace');
                button.addEventListener('click', () => {
-                  keyboard.value = keyboard.value.slice(0, -1);
-                  updateInput(inputBox, keyboard.value);
+                  inputBox.value = inputBox.value.slice(0, -1);
+                  // keyboard.cap_lock = null;
+                  // document.getElementById('k-capslock').classList.toggle('cap-on')
                });
                break;
-            case "cap":
+            case "capslock":
                button.innerHTML = createCustomKey('arrow-alt-circle-up');
                button.addEventListener('click', () => {
-                  button.classList.toggle('cap-on');
                   keyboard.cap_lock = keyboard.cap_lock? null : true;
-                  inputBox.focus();
+                  button.classList.toggle('k-cap-on');
+               });
+               break;
+            case "shift":
+               button.addEventListener('click', () => {
+                  keyboard.shift_key = true;
                });
                break;
             case "enter":
                button.innerHTML = createCustomKey('level-down-alt');
                button.firstElementChild.style.transform = "rotate(90deg)"
                button.addEventListener('click', () => {
-                  keyboard.value += '\n';
-                  updateInput(inputBox, keyboard.value);
+                  inputBox.value += '\n';
+                  // keyboard.cap_lock = null;
+                  // document.getElementById('k-capslock').classList.toggle('cap-on')
                })
                break;
             case "space":
                button.innerHTML = createCustomKey('ruler-horizontal');
                button.classList.add('key-common');
                button.addEventListener('click', () => {
-                  keyboard.value += ' ';
-                  updateInput(inputBox, keyboard.value);
+                  inputBox.value += ' ';
+                  // keyboard.cap_lock = null;
+                  // document.getElementById('k-capslock').classList.toggle('cap-on')
                });
                break;
             default:
-               button.innerHTML = key[0];
+               button.innerText = key[0];
                button.addEventListener('click', () => {
                   keyboard.value += keyboard.cap_lock ?  key[0].toUpperCase() : key[0];
-                  updateInput(inputBox, keyboard.value);
+                  // keyboard.cap_lock = null;
+                  // document.getElementById('k-capslock').classList.toggle('cap-on')
                });
          }
-         keyboardKeys.appendChild(button);
-
       }    
-      else if (key.length == 3 && key[0] != '&') {
+      else {
          button.classList.add('key', 'multi-key');
          button.innerHTML = `<span>${key[0]}</span>
-                             <span>${key[1]}</span>
-                             <span>${key[2]}</span>`;
-
+         <span>${key[1]}</span>
+         <span>${key[2]}</span>`;
+         
          button.addEventListener('click', () => {
-            keyboard.value += keyboard.cap_lock && keyboard.mm_f?  key[1] : key[2];
-            updateInput(inputBox, keyboard.value);
+            inputBox.value += keyboard.shift_key? key[1] : key[2];
+            keyboard.shift_key = false;
+            // keyboard.cap_lock = null;
+            // document.getElementById('k-capslock').classList.toggle('cap-on')
          });
-      
-         keyboardKeys.appendChild(button);
       }  
+      button.setAttribute('id', `k-${key[0]}`);
+      keyboardKeys.appendChild(button);
    });
    keyboardCtr.appendChild(keyboardKeys);
    document.body.appendChild(keyboardCtr);
@@ -88,12 +95,12 @@ function init() {
 
 const createCustomKey = (iconName) => `<i class="fas fa-${iconName}"></i>`;
 
-const updateInput = (inp, val) => {
-   inp.value = val;
-   inp.focus();
-} 
-
 document.addEventListener('DOMContentLoaded', () => {
    init();
 })
 
+document.addEventListener('keydown', e => {
+   const key = document.getElementById(`k-${e.key.toLowerCase()}`);
+   if (key !== null)
+      key.click();
+});
