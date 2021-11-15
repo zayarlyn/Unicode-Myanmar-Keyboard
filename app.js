@@ -96,11 +96,17 @@ document.addEventListener('keydown', e => {
 
 const copy = document.getElementById('copy');
 copy.onclick = () => {
-   navigator.clipboard.writeText(inputBox.value);
+   if (navigator.clipboard != undefined) {
+      navigator.clipboard.writeText(inputBox.value);
+   }
+   else {// browser compactibility
+      copy.select();
+      document.execCommand("copy");
+   }
    copy.innerText = "Copied!!";
    setTimeout(() => {
       copy.innerText = "Copy";
-   }, 4000);
+   }, 3000);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
