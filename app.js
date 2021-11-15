@@ -13,6 +13,8 @@ const inputBox = document.getElementById('input-box');
 function init() {
    const keyboardCtr = document.createElement("div");
    keyboardCtr.classList.add('keyboard-ctr');
+   keyboardCtr.setAttribute('id', "k-ctr");
+   keyboardCtr.style.transition = "opacity 1s";
    let keyboardKeys = document.createElement("div");
    keyboardKeys.classList.add("keyboard-keys");
 
@@ -87,28 +89,52 @@ function init() {
 
 const createCustomKey = (iconName) => `<i class="fas fa-${iconName}"></i>`;
 
-document.addEventListener('keydown', e => {
-   console.log(e.key);
-   const key = document.getElementById(`k-${e.key.toLowerCase()}`);
-   if (key !== null)
-      key.click();
-});
 
-const copy = document.getElementById('copy');
-copy.onclick = () => {
-   if (navigator.clipboard != undefined) {
-      navigator.clipboard.writeText(inputBox.value);
-   }
-   else {// browser compactibility
-      copy.select();
-      document.execCommand("copy");
-   }
-   copy.innerText = "Copied!!";
-   setTimeout(() => {
-      copy.innerText = "Copy";
-   }, 3000);
-};
+
 
 document.addEventListener('DOMContentLoaded', () => {
    init();
+   
+   const copy = document.getElementById('copy');
+   const bind = document.getElementById('connect');
+   const keyboardCtr = document.getElementById('k-ctr');
+   let cond = true;
+
+   document.addEventListener('keydown', e => {
+      if (cond && e.key !== null) {
+         const key = document.getElementById(`k-${e.key.toLowerCase()}`);
+         key.click();
+      }
+   });
+
+   bind.onclick = () => {
+      if (cond) {
+         keyboardCtr.style.pointerEvents = 'none';
+         inputBox.style.pointerEvents = 'auto';
+         keyboardCtr.style.opacity = ".5";
+         bind.innerText = "Disconnected"
+         cond = false;
+      }
+      else {
+         keyboardCtr.style.pointerEvents = 'auto';
+         inputBox.style.pointerEvents = 'none';
+         keyboardCtr.style.opacity = "1";
+         bind.innerText = "Connected";
+         cond = true;
+      }
+   }
+   
+   copy.onclick = () => {
+      if (navigator.clipboard != undefined) {
+         navigator.clipboard.writeText(inputBox.value);
+      }
+      else {// browser compactibility
+         copy.select();
+         document.execCommand("copy");
+      }
+      copy.innerText = "Copied!!";
+      setTimeout(() => {
+         copy.innerText = "Copy";
+      }, 3000);
+   };
 });
