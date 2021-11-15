@@ -8,8 +8,9 @@ const keyboard = {
    value : ""
 }
 
+const inputBox = document.getElementById('input-box');
+
 function init() {
-   const inputBox = document.getElementById('input-box');
    const keyboardCtr = document.createElement("div");
    keyboardCtr.classList.add('keyboard-ctr');
    let keyboardKeys = document.createElement("div");
@@ -86,13 +87,22 @@ function init() {
 
 const createCustomKey = (iconName) => `<i class="fas fa-${iconName}"></i>`;
 
-document.addEventListener('DOMContentLoaded', () => {
-   init();
-})
-
 document.addEventListener('keydown', e => {
    console.log(e.key);
    const key = document.getElementById(`k-${e.key.toLowerCase()}`);
    if (key !== null)
       key.click();
+});
+
+const copy = document.getElementById('copy');
+copy.onclick = () => {
+   navigator.clipboard.writeText(inputBox.value);
+   copy.innerText = "Copied!!";
+   setTimeout(() => {
+      copy.innerText = "Copy";
+   }, 4000);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+   init();
 });

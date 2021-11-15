@@ -29,6 +29,20 @@
    /* pointer-events: none; */
 }
 
+.btn {
+   margin-top: .5rem;
+   border: 2px solid;
+   border-radius: 6px;
+   padding: 3px 10px;
+   background-color: #fff;
+   box-shadow: 0 0 3px rgb(214, 214, 214);
+}
+
+.btn:hover {
+   cursor: pointer;
+   color: tomato;
+}
+
 .keyboard-ctr {
    position: fixed;
    bottom: 0;
