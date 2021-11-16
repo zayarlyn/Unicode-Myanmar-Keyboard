@@ -43,6 +43,13 @@
    color: tomato;
 }
 
+#btn-ctr {
+   margin-bottom: .5rem;
+}
+small {
+   color: teal;
+}
+
 .keyboard-ctr {
    position: fixed;
    bottom: 0;
@@ -134,6 +141,10 @@
 @media (max-width: 650px) {
    .key {
       font-size: 16px;
+   }
+
+   .multi-key span:nth-child(n+1) {
+      font-size: 14px;
    }
 }
 

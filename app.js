@@ -89,9 +89,6 @@ function init() {
 
 const createCustomKey = (iconName) => `<i class="fas fa-${iconName}"></i>`;
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
    init();
    
