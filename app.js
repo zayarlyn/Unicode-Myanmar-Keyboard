@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cond) {
          keyboardCtr.style.pointerEvents = 'none';
          inputBox.style.pointerEvents = 'auto';
+         inputBox.focus();
          keyboardCtr.style.opacity = ".5";
          bind.innerText = "Disconnected"
          cond = false;
@@ -122,13 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
    
    copy.onclick = () => {
-      if (navigator.clipboard != undefined) {
-         navigator.clipboard.writeText(inputBox.value);
-      }
-      else {// browser compactibility
-         copy.select();
-         document.execCommand("copy");
-      }
+      navigator.clipboard.writeText(inputBox.value);
       copy.innerText = "Copied!!";
       setTimeout(() => {
          copy.innerText = "Copy";
