@@ -1,5 +1,5 @@
 # Online Myanmar Keyboard
-[try it now]( https://takamimusubinomikoto.github.io/Myanmar-Unicode-Online-Keyboard/)
+[try it now](https://lyn-eva.github.io/vanillaJS-Unicode-Myanmar-Keyboard/)
 
 ## Tech Stack
  - HTML
