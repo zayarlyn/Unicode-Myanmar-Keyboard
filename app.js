@@ -63,7 +63,7 @@ const handleKeyDown = (e) => {
   const pair = keyboard.key_layout[key];
   prevState = inputBox.value;
   key = key === 'ShiftLeft' || key === 'ShiftRight' ? 'DefinedShift' : key;
-console.log(key)
+  
   switch (key) {
     case 'Backspace':
       inputBox.value = prevState.slice(0, -1);
