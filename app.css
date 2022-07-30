@@ -30,7 +30,7 @@
 }
 
 .btn {
-   margin-top: 0.5rem;
+   margin: 0.5rem 1px 0;
    border: 2px solid;
    border-radius: 6px;
    padding: 3px 10px;
@@ -112,7 +112,7 @@ small {
 }
 
 .multi-key > span:nth-child(3) {
-   bottom: -4px;
+   bottom: 2px;
    left: 5px;
    font-size: 18px;
 }
