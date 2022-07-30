@@ -33,7 +33,7 @@ function init() {
     }
 
     switch (key) {
-      case 'backspace':
+      case 'Backspace':
         button.innerHTML = createCustomKey('backspace');
         break;
       case 'Shift':
@@ -63,9 +63,9 @@ const handleKeyDown = (e) => {
   const pair = keyboard.key_layout[key];
   prevState = inputBox.value;
   key = key === 'ShiftLeft' || key === 'ShiftRight' ? 'DefinedShift' : key;
-
+console.log(key)
   switch (key) {
-    case 'backspace':
+    case 'Backspace':
       inputBox.value = prevState.slice(0, -1);
       break;
     case 'Enter':
@@ -160,7 +160,7 @@ const keyboard = {
     KeyI: ['i', '၍', 'င'],
     KeyO: ['o', 'ဿ', 'သ'],
     KeyP: ['p', 'ဏ', 'စ'],
-    backspace: ['backspace'],
+    Backspace: ['backspace'],
     Shift: ['shift'],
     KeyA: ['a', 'ဗ', 'ေ'],
     KeyS: ['s', 'ှ', 'ျ'],
